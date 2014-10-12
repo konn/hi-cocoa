@@ -87,7 +87,9 @@ buildWith AppSetting {..} = do
     when remove $ removeFilesAfter dest ["//*"]
     () <- cmd "mv" "-f" skeleton out
     copyFile' exe (out </> "Contents" </> "MacOS" </> app)
-    copyFile' ("data/AppIcon.icns") (out </> "Contents" </> "Resources" </> "AppIcon.icns")
+    -- copyFile' ("data/AppIcon.icns") (out </> "Contents" </> "Resources" </> "AppIcon.icns")
+    -- To generate icns file, you have to build skeleton .xcodeproject and copy .icns at first
+    -- because xcodebuild currntly doesn't generate icns file.
     putNormal "Application bundle successfully compiled."
 
   build </> app <.> "app" *> \out -> do
