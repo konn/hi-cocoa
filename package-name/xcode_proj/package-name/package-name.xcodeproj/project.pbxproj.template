@@ -1,4 +1,4 @@
-// !$*UTF8*$!
+// !$$*UTF8*$$!
 {
 	archiveVersion = 1;
 	classes = {
@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		9597157F19EA79F800E35E4F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9597157E19EA79F800E35E4F /* main.m */; };
-		9597158219EA79F800E35E4F /* ModuleName.m in Sources */ = {isa = PBXBuildFile; fileRef = 9597158119EA79F800E35E4F /* ModuleName.m */; };
+		9597158219EA79F800E35E4F /* ${moduleName}.m in Sources */ = {isa = PBXBuildFile; fileRef = 9597158119EA79F800E35E4F /* ${moduleName}.m */; };
 		9597158419EA79F800E35E4F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9597158319EA79F800E35E4F /* Images.xcassets */; };
 		9597158719EA79F800E35E4F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9597158519EA79F800E35E4F /* MainMenu.xib */; };
-		9597159319EA79F800E35E4F /* package-nameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9597159219EA79F800E35E4F /* package-nameTests.m */; };
+		9597159319EA79F800E35E4F /* ${packageName}Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9597159219EA79F800E35E4F /* ${packageName}Tests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -20,21 +20,21 @@
 			containerPortal = 9597157119EA79F800E35E4F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 9597157819EA79F800E35E4F;
-			remoteInfo = "package-name";
+			remoteInfo = "${packageName}";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9597157919EA79F800E35E4F /* package-name.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "package-name.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9597157919EA79F800E35E4F /* ${packageName}.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "${packageName}.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9597157D19EA79F800E35E4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9597157E19EA79F800E35E4F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9597158019EA79F800E35E4F /* ModuleName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModuleName.h; sourceTree = "<group>"; };
-		9597158119EA79F800E35E4F /* ModuleName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleName.m; sourceTree = "<group>"; };
+		9597158019EA79F800E35E4F /* ${moduleName}.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ${moduleName}.h; sourceTree = "<group>"; };
+		9597158119EA79F800E35E4F /* ${moduleName}.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ${moduleName}.m; sourceTree = "<group>"; };
 		9597158319EA79F800E35E4F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9597158619EA79F800E35E4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		9597158C19EA79F800E35E4F /* package-nameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "package-nameTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9597158C19EA79F800E35E4F /* ${packageName}Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "${packageName}Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9597159119EA79F800E35E4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9597159219EA79F800E35E4F /* package-nameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "package-nameTests.m"; sourceTree = "<group>"; };
+		9597159219EA79F800E35E4F /* ${packageName}Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "${packageName}Tests.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +58,8 @@
 		9597157019EA79F800E35E4F = {
 			isa = PBXGroup;
 			children = (
-				9597157B19EA79F800E35E4F /* package-name */,
-				9597158F19EA79F800E35E4F /* package-nameTests */,
+				9597157B19EA79F800E35E4F /* ${packageName} */,
+				9597158F19EA79F800E35E4F /* ${packageName}Tests */,
 				9597157A19EA79F800E35E4F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,22 +67,22 @@
 		9597157A19EA79F800E35E4F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9597157919EA79F800E35E4F /* package-name.app */,
-				9597158C19EA79F800E35E4F /* package-nameTests.xctest */,
+				9597157919EA79F800E35E4F /* ${packageName}.app */,
+				9597158C19EA79F800E35E4F /* ${packageName}Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9597157B19EA79F800E35E4F /* package-name */ = {
+		9597157B19EA79F800E35E4F /* ${packageName} */ = {
 			isa = PBXGroup;
 			children = (
-				9597158019EA79F800E35E4F /* ModuleName.h */,
-				9597158119EA79F800E35E4F /* ModuleName.m */,
+				9597158019EA79F800E35E4F /* ${moduleName}.h */,
+				9597158119EA79F800E35E4F /* ${moduleName}.m */,
 				9597158319EA79F800E35E4F /* Images.xcassets */,
 				9597158519EA79F800E35E4F /* MainMenu.xib */,
 				9597157C19EA79F800E35E4F /* Supporting Files */,
 			);
-			path = "package-name";
+			path = "${packageName}";
 			sourceTree = "<group>";
 		};
 		9597157C19EA79F800E35E4F /* Supporting Files */ = {
@@ -94,13 +94,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9597158F19EA79F800E35E4F /* package-nameTests */ = {
+		9597158F19EA79F800E35E4F /* ${packageName}Tests */ = {
 			isa = PBXGroup;
 			children = (
-				9597159219EA79F800E35E4F /* package-nameTests.m */,
+				9597159219EA79F800E35E4F /* ${packageName}Tests.m */,
 				9597159019EA79F800E35E4F /* Supporting Files */,
 			);
-			path = "package-nameTests";
+			path = "${packageName}Tests";
 			sourceTree = "<group>";
 		};
 		9597159019EA79F800E35E4F /* Supporting Files */ = {
@@ -114,9 +114,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9597157819EA79F800E35E4F /* package-name */ = {
+		9597157819EA79F800E35E4F /* ${packageName} */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9597159619EA79F800E35E4F /* Build configuration list for PBXNativeTarget "package-name" */;
+			buildConfigurationList = 9597159619EA79F800E35E4F /* Build configuration list for PBXNativeTarget "${packageName}" */;
 			buildPhases = (
 				9597157519EA79F800E35E4F /* Sources */,
 				9597157619EA79F800E35E4F /* Frameworks */,
@@ -126,14 +126,14 @@
 			);
 			dependencies = (
 			);
-			name = "package-name";
-			productName = "package-name";
-			productReference = 9597157919EA79F800E35E4F /* package-name.app */;
+			name = "${packageName}";
+			productName = "${packageName}";
+			productReference = 9597157919EA79F800E35E4F /* ${packageName}.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9597158B19EA79F800E35E4F /* package-nameTests */ = {
+		9597158B19EA79F800E35E4F /* ${packageName}Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9597159919EA79F800E35E4F /* Build configuration list for PBXNativeTarget "package-nameTests" */;
+			buildConfigurationList = 9597159919EA79F800E35E4F /* Build configuration list for PBXNativeTarget "${packageName}Tests" */;
 			buildPhases = (
 				9597158819EA79F800E35E4F /* Sources */,
 				9597158919EA79F800E35E4F /* Frameworks */,
@@ -144,9 +144,9 @@
 			dependencies = (
 				9597158E19EA79F800E35E4F /* PBXTargetDependency */,
 			);
-			name = "package-nameTests";
-			productName = "package-nameTests";
-			productReference = 9597158C19EA79F800E35E4F /* package-nameTests.xctest */;
+			name = "${packageName}Tests";
+			productName = "${packageName}Tests";
+			productReference = 9597158C19EA79F800E35E4F /* ${packageName}Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -156,7 +156,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0600;
-				ORGANIZATIONNAME = "Hiromi ISHII";
+				ORGANIZATIONNAME = "$author";
 				TargetAttributes = {
 					9597157819EA79F800E35E4F = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -167,7 +167,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9597157419EA79F800E35E4F /* Build configuration list for PBXProject "package-name" */;
+			buildConfigurationList = 9597157419EA79F800E35E4F /* Build configuration list for PBXProject "${packageName}" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -180,8 +180,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9597157819EA79F800E35E4F /* package-name */,
-				9597158B19EA79F800E35E4F /* package-nameTests */,
+				9597157819EA79F800E35E4F /* ${packageName} */,
+				9597158B19EA79F800E35E4F /* ${packageName}Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -210,7 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9597158219EA79F800E35E4F /* ModuleName.m in Sources */,
+				9597158219EA79F800E35E4F /* ${moduleName}.m in Sources */,
 				9597157F19EA79F800E35E4F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,7 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9597159319EA79F800E35E4F /* package-nameTests.m in Sources */,
+				9597159319EA79F800E35E4F /* ${packageName}Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,7 +228,7 @@
 /* Begin PBXTargetDependency section */
 		9597158E19EA79F800E35E4F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9597157819EA79F800E35E4F /* package-name */;
+			target = 9597157819EA79F800E35E4F /* ${packageName} */;
 			targetProxy = 9597158D19EA79F800E35E4F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -270,7 +270,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
-					"$(inherited)",
+					"$$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -326,9 +326,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "package-name/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "${packageName}/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
@@ -337,52 +337,52 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "package-name/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "${packageName}/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$$(TARGET_NAME)";
 			};
 			name = Release;
 		};
 		9597159A19EA79F800E35E4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				BUNDLE_LOADER = "$$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
+					"$$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$$(inherited)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
-					"$(inherited)",
+					"$$(inherited)",
 				);
-				INFOPLIST_FILE = "package-nameTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/package-name.app/Contents/MacOS/package-name";
+				INFOPLIST_FILE = "${packageName}Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$$(TARGET_NAME)";
+				TEST_HOST = "$$(BUILT_PRODUCTS_DIR)/${packageName}.app/Contents/MacOS/${packageName}";
 			};
 			name = Debug;
 		};
 		9597159B19EA79F800E35E4F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				BUNDLE_LOADER = "$$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
+					"$$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$$(inherited)",
 				);
-				INFOPLIST_FILE = "package-nameTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/package-name.app/Contents/MacOS/package-name";
+				INFOPLIST_FILE = "${packageName}Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$$(TARGET_NAME)";
+				TEST_HOST = "$$(BUILT_PRODUCTS_DIR)/${packageName}.app/Contents/MacOS/${packageName}";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9597157419EA79F800E35E4F /* Build configuration list for PBXProject "package-name" */ = {
+		9597157419EA79F800E35E4F /* Build configuration list for PBXProject "${packageName}" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9597159419EA79F800E35E4F /* Debug */,
@@ -391,7 +391,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9597159619EA79F800E35E4F /* Build configuration list for PBXNativeTarget "package-name" */ = {
+		9597159619EA79F800E35E4F /* Build configuration list for PBXNativeTarget "${packageName}" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9597159719EA79F800E35E4F /* Debug */,
@@ -399,7 +399,7 @@
 			);
 			defaultConfigurationIsVisible = 0;
 		};
-		9597159919EA79F800E35E4F /* Build configuration list for PBXNativeTarget "package-nameTests" */ = {
+		9597159919EA79F800E35E4F /* Build configuration list for PBXNativeTarget "${packageName}Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9597159A19EA79F800E35E4F /* Debug */,

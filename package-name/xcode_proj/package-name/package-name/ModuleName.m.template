@@ -1,6 +1,6 @@
 //
-//  $moduleName.m
-//  $packageName
+//  ${moduleName}.m
+//  ${packageName}
 //
 //  Created by $author on $date.
 //  Copyright (c) $year, $author. All rights reserved.
@@ -8,12 +8,12 @@
 
 #import "ModuleName.h"
 
-@interface $moduleName ()
+@interface ${moduleName} ()
 
 @property (weak) IBOutlet NSWindow *window;
 @end
 
-@implementation $moduleName
+@implementation ${moduleName}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application

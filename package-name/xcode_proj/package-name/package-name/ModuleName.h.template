@@ -1,6 +1,6 @@
 //
-//  $moduleName.h
-//  $packageName
+//  ${moduleName}.h
+//  ${packageName}
 //
 //  Created by $author on $date.
 //  Copyright (c) $year, $author. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface $moduleName : NSObject <NSApplicationDelegate>
+@interface ${moduleName} : NSObject <NSApplicationDelegate>
 
 
 @end
