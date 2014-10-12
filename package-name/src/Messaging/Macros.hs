@@ -1,7 +1,7 @@
 {-# LANGUAGE DataKinds, DeriveDataTypeable, FlexibleInstances, GADTs #-}
 {-# LANGUAGE MultiParamTypeClasses, OverloadedStrings, QuasiQuotes   #-}
 {-# LANGUAGE StandaloneDeriving, TemplateHaskell, TupleSections      #-}
-{-# LANGUAGE TypeOperators                                           #-}
+{-# LANGUAGE TypeOperators, TypeFamilies                                           #-}
 {-# OPTIONS_GHC -fwarn-incomplete-patterns #-}
 module Messaging.Macros (defineClass, definePhantomClass, idMarshaller,
                          defineSelector, SelectorDef(..), newSelector, Argument(..)) where
@@ -17,6 +17,7 @@ import           Language.C.Inline.ObjC
 import qualified Language.C.Quote       as QC
 import           Language.Haskell.TH
 import           Messaging.Core
+import Debug.Trace
 
 defineClass :: String -> Maybe Name -> DecsQ
 defineClass = definePhantomClass 0
@@ -42,12 +43,18 @@ idMarshaller name = do
 genSubtypes :: TypeQ -> Maybe Type -> DecsQ
 genSubtypes _    Nothing      = return []
 genSubtypes name (Just super) = do
-  let geq = ''(:>)
-      geqT = AppT (AppT (ConT geq) (ConT ''Symbol)) (ConT ''Symbol)
   ClassI _ insts <- reify ''(:>)
-  let supers = [ typ | InstanceD [] (AppT (AppT geqT0 typ) sub) _ <- insts
-                     , sub == super, geqT0 == geqT]
+  let supers = [ typ | InstanceD [] (AppT (AppT _ typ) sub) _ <- insts
+                     , removeQual sub == removeQual super ]
   concat <$> mapM (\s -> [d| instance $(return s) :> $name |]) (super:supers)
+
+removeQual :: Type -> Type
+removeQual (ConT name) = ConT $ mkName $ nameBase name
+removeQual (AppT t t') = AppT (removeQual t) (removeQual t')
+removeQual (ForallT cxt t t') = ForallT cxt t (removeQual t')
+removeQual (SigT t t') = SigT (removeQual t) (removeQual t')
+removeQual (PromotedT v) = (PromotedT $ mkName $ nameBase v)
+removeQual t = t
 
 data Argument = Defined Name
               | String :>:  TypeQ
