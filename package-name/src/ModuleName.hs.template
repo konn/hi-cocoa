@@ -7,7 +7,6 @@
 {-# OPTIONS_GHC -fno-warn-unused-binds -fno-warn-orphans #-}
 module $moduleName ( objc_initialise ) where
 import Constants
-import KeyFlags
 import Messaging
 
 import           Language.C.Inline.ObjC
