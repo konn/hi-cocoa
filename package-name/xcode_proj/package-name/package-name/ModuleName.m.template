@@ -6,7 +6,7 @@
 //  Copyright (c) $year, $author. All rights reserved.
 //
 
-#import "ModuleName.h"
+#import "${moduleName}.h"
 
 @interface ${moduleName} ()
 
