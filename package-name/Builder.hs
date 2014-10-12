@@ -2,6 +2,7 @@
 module Main where
 import           Control.Applicative                   ((<$>))
 import           Control.Monad                         (when)
+import           Control.Monad                         (filterM)
 import           Data.List                             (intersperse, nub)
 import           Data.Maybe
 import           Development.Shake
@@ -96,9 +97,8 @@ buildWith AppSetting {..} = do
     cmd "mv" "-f" ("xcode_proj" </> app </> "build/Release" </> app <.> "app") out
 
   build </> app *> \out -> do
-    hss0 <- getDirectoryFiles "cocoa" ["//*.hs"]
-    hss1 <- getDirectoryFiles "src" ["//*.hs"]
-    let objs = [build </> hs -<.> "o" | hs <- hss0 ++ hss1, hs `notElem` ["Setup.hs", "Builder.hs"]]
+    hss <- concat <$> mapM (\dir -> getDirectoryFiles dir ["//*.hs"]) srcDirs
+    let objs = [build </> hs -<.> "o" | hs <- hss, hs `notElem` ["Setup.hs", "Builder.hs"]]
     need objs
     addObs <- getDirectoryFiles "" ["_build//*_objc.o"]
     putNormal $ "linking executable... "
@@ -109,9 +109,8 @@ buildWith AppSetting {..} = do
   ["_build//*.o", "_build//*.hi"] &*> \ [out, hi] -> do
     putNormal $ "building object: " ++ out
     let hs0 = dropDirectory1 $ out -<.> "hs"
-    isSrc <- doesFileExist $ "src" </> hs0
-    let hs | isSrc     = "src" </> hs0
-           | otherwise = "cocoa" </> hs0
+    (dist : _) <- filterM (\d -> doesFileExist $ d </> hs0) srcDirs
+    let hs = dist </> hs0
         dep = out -<.> "dep"
         obcBase = dropExtension hs ++ "_objc"
         obcm = obcBase <.> "m"
