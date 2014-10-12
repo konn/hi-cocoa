@@ -1,0 +1,28 @@
+$packageName - some description
+================================
+
+[![Build Status](https://travis-ci.org/konn/$packageName.svg?branch=master)](https://travis-ci.org/konn/$packageName) 
+[![loop-effin](http://img.shields.io/hackage/v/$packageName.svg)](http://hackage.haskell.org/package/$packageName)
+
+## What is this?
+This is my great application.
+
+## Install
+
+```sh
+$$ cabal install $packageName
+```
+
+## Usage
+
+```sh
+$$ $packageName foo bar
+```
+
+## Licence
+
+BSD3
+
+## Copyright
+
+(c) $author $year

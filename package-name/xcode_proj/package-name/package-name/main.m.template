@@ -1,0 +1,13 @@
+//
+//  main.m
+//  package-name
+//
+//  Created by $author on $date.
+//  Copyright (c) $year, $author. All rights reserved.
+//
+
+#import <Cocoa/Cocoa.h>
+
+int main(int argc, const char * argv[]) {
+    return NSApplicationMain(argc, argv);
+}

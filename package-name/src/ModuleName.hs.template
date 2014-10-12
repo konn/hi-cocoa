@@ -1,0 +1,53 @@
+{-# LANGUAGE DataKinds, DeriveDataTypeable, EmptyDataDecls                #-}
+{-# LANGUAGE FlexibleContexts, FlexibleInstances, LambdaCase              #-}
+{-# LANGUAGE MultiParamTypeClasses, MultiWayIf, NoMonomorphismRestriction #-}
+{-# LANGUAGE OverloadedStrings, PatternGuards, QuasiQuotes, RankNTypes    #-}
+{-# LANGUAGE RecursiveDo, StandaloneDeriving, TemplateHaskell             #-}
+{-# LANGUAGE TupleSections, TypeFamilies, TypeOperators, ViewPatterns     #-}
+{-# OPTIONS_GHC -fno-warn-unused-binds -fno-warn-orphans #-}
+module $moduleName ( objc_initialise ) where
+import Constants
+import KeyFlags
+import Messaging
+
+import           Language.C.Inline.ObjC
+import           Language.C.Quote.ObjC
+
+objc_import ["<Cocoa/Cocoa.h>",
+             "HsFFI.h"]
+
+defineClass "NSObject"    Nothing
+idMarshaller ''NSObject
+
+defineClass "$moduleName" (Just ''NSObject)
+idMarshaller ''$moduleName
+
+defineClass "NSString"    (Just ''NSObject)
+idMarshaller ''NSString
+
+data Session = Session { _self      :: $moduleName
+                       } deriving (Typeable)
+
+nsLog :: MonadIO m => String -> m ()
+nsLog msg = liftIO $$(objc ['msg :> ''String] $$ void [cexp| NSLog(@"%@", msg) |])
+
+newSession :: $moduleName -> IO Session
+newSession = Session
+
+objc_interface [cunit|
+@interface $moduleName : NSObject
+@property (assign) typename HsStablePtr session;
+@end
+|]
+
+objc_implementation [ Typed 'newSession ]
+  [cunit|
+@implementation $moduleName
+- (void)applicationDidFinishLaunching:(typename NSNotification *)aNotification
+{
+  self.session = newSession(self);
+}
+@end
+|]
+
+objc_emit
