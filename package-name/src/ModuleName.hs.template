@@ -32,7 +32,7 @@ nsLog :: String -> IO ()
 nsLog msg = $$(objc ['msg :> ''String] $$ void [cexp| NSLog(@"%@", msg) |])
 
 newSession :: $moduleName -> IO Session
-newSession = Session
+newSession = return . Session
 
 objc_interface [cunit|
 @interface $moduleName : NSObject
