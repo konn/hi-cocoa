@@ -11,3 +11,4 @@ cabal.sandbox.config
 \#.*\#
 _build
 _build.database
+${packageName}.app
