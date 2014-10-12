@@ -1,6 +1,6 @@
 {-# LANGUAGE RecordWildCards #-}
 module Main where
-import           Control.Applicative                   ((<$>))
+import           Control.Applicative                   ((<$$>))
 import           Control.Monad                         (when)
 import           Control.Monad                         (filterM)
 import           Data.List                             (intersperse, nub)
@@ -32,26 +32,26 @@ data AppSetting = AppSetting { app      :: String
 
 main :: IO ()
 main = do
-  cab <- head . filter ((== ".cabal") . takeExtension) <$> (D.getDirectoryContents =<< D.getCurrentDirectory)
+  cab <- head . filter ((== ".cabal") . takeExtension) <$$> (D.getDirectoryContents =<< D.getCurrentDirectory)
   packdesc <- readPackageDescription silent cab
   msandbox <- getSandbox
-  let deps0 = buildDepends $ packageDescription packdesc
-      exes  = map (condTreeData . snd) $ condExecutables packdesc
-      name  = fst $ last $ condExecutables packdesc
-      deps1 = condTreeConstraints $ snd $ last $ condExecutables packdesc
+  let deps0 = buildDepends $$ packageDescription packdesc
+      exes  = map (condTreeData . snd) $$ condExecutables packdesc
+      name  = fst $$ last $$ condExecutables packdesc
+      deps1 = condTreeConstraints $$ snd $$ last $$ condExecutables packdesc
       dbs   = maybeToList msandbox
       incs  = map (</> "include") [Path.libdir, Path.libdir ++ "/../.."]
       targ = last exes
       deps = deps0 ++ deps1 ++ targetBuildDepends (buildInfo targ)
-      packs = prefixing "-package" $ nub $ map getPackageName deps
-      frams = prefixing "-framework" $ frameworks $ buildInfo targ
+      packs = prefixing "-package" $$ nub $$ map getPackageName deps
+      frams = prefixing "-framework" $$ frameworks $$ buildInfo targ
       opts  = ["-optl-ObjC", "-threaded"]
       setting = AppSetting { app = name
                            , ldFlags = packs ++ frams ++ opts
                            , packDBs = dbs
                            , includes = incs
                            }
-    in shakeArgs shakeOptions{shakeFiles=build} $ buildWith setting
+    in shakeArgs shakeOptions{shakeFiles=build} $$ buildWith setting
 
 prefixing :: a -> [a] -> [a]
 prefixing _   [] = []
@@ -69,27 +69,32 @@ buildWith AppSetting {..} = do
       xcode = "xcode_proj" </> app </> app <.> "xcodeproj"
   want [dest]
 
-  phony "clean" $ do
+  phony "clean" $$ do
     putNormal "cleaning..."
     removeFilesAfter "" ["//*_objc.h","//*_objc.m","//*_stub.h"]
     remove <- doesDirectoryExist build
-    when remove $
+    when remove $$
       removeFilesAfter build ["//*"]
 
     remove' <- doesDirectoryExist dest
-    when remove $
+    when remove $$
       removeFilesAfter dest ["//*"]
 
   dest *> \out -> do
     putNormal "setting up for bundle..."
     need [skeleton, exe]
     remove <- doesDirectoryExist dest
-    when remove $ removeFilesAfter dest ["//*"]
+    when remove $$ removeFilesAfter dest ["//*"]
     () <- cmd "mv" "-f" skeleton out
     copyFile' exe (out </> "Contents" </> "MacOS" </> app)
-    -- copyFile' ("data/AppIcon.icns") (out </> "Contents" </> "Resources" </> "AppIcon.icns")
-    -- To generate icns file, you have to build skeleton .xcodeproject and copy .icns at first
-    -- because xcodebuild currntly doesn't generate icns file.
+    hasIcns <- doesFileExist "data/AppIcon.icns"
+    if hasIcns
+      then copyFile' ("data/AppIcon.icns") (out </> "Contents" </> "Resources" </> "AppIcon.icns")
+      else do
+        putNormal "*** Because xcodebuild currently doesn't generate .icns file from xcassets, "
+        putNormal "*** in order to generate icon for, you have to build .xcodeproj"
+        putNormal "*** by Xcode and copy ${packageName}.app/Resources/AppIcon.icns"
+        putNormal "*** and copy to ./data/AppIcon.icns manually at first."
     putNormal "Application bundle successfully compiled."
 
   build </> app <.> "app" *> \out -> do
@@ -99,37 +104,37 @@ buildWith AppSetting {..} = do
     cmd "mv" "-f" ("xcode_proj" </> app </> "build/Release" </> app <.> "app") out
 
   build </> app *> \out -> do
-    hss <- concat <$> mapM (\dir -> getDirectoryFiles dir ["//*.hs"]) srcDirs
+    hss <- concat <$$> mapM (\dir -> getDirectoryFiles dir ["//*.hs"]) srcDirs
     let objs = [build </> hs -<.> "o" | hs <- hss, hs `notElem` ["Setup.hs", "Builder.hs"]]
     need objs
     addObs <- getDirectoryFiles "" ["_build//*_objc.o"]
-    putNormal $ "linking executable... "
-    command_ [] "ghc" $ map ("-i"++) srcDirs ++
+    putNormal $$ "linking executable... "
+    command_ [] "ghc" $$ map ("-i"++) srcDirs ++
       [ "-o", out, "-odir", build, "-hidir", build, "-stubdir"
       , build, "-outputdir", build] ++ objs ++ addObs ++ ldFlags ++ dbs
 
   ["_build//*.o", "_build//*.hi"] &*> \ [out, hi] -> do
-    putNormal $ "building object: " ++ out
-    let hs0 = dropDirectory1 $ out -<.> "hs"
-    (dist : _) <- filterM (\d -> doesFileExist $ d </> hs0) srcDirs
+    putNormal $$ "building object: " ++ out
+    let hs0 = dropDirectory1 $$ out -<.> "hs"
+    (dist : _) <- filterM (\d -> doesFileExist $$ d </> hs0) srcDirs
     let hs = dist </> hs0
         dep = out -<.> "dep"
         obcBase = dropExtension hs ++ "_objc"
         obcm = obcBase <.> "m"
         obch = obcBase <.> "h"
-    command_ [] "ghc" $ map ("-i"++) srcDirs ++ [ "-M", "-odir", build, "-hidir", build
+    command_ [] "ghc" $$ map ("-i"++) srcDirs ++ [ "-M", "-odir", build, "-hidir", build
                         , "-dep-suffix", "", "-dep-makefile", dep, hs] ++ dbs
     needMakefileDependencies dep
-    command_ [] "ghc" $ map ("-i"++) srcDirs ++ ["-c", hs, "-dynamic"
+    command_ [] "ghc" $$ map ("-i"++) srcDirs ++ ["-c", hs, "-dynamic"
                       , "-o", out] ++ dbs ++ [ "-odir", build, "-hidir"
                       , build, ("-i" ++ build)]
     gen'd <- doesFileExist obcm
-    when gen'd $ do
-      putNormal $ "compiling gen'd file: " ++ obcm
+    when gen'd $$ do
+      putNormal $$ "compiling gen'd file: " ++ obcm
       () <- cmd "mv" obcm (build </> dropDirectory1 obcm)
       () <- cmd "mv" obch (build </> dropDirectory1 obch)
       () <- cmd "cc" "-fobjc-arc"
         (map ("-I"++) includes)
         "-c -o" (build </> dropDirectory1 obcBase <.> "o") (build </> dropDirectory1 obcm)
-      cmd "rm" "-f" $ dropExtension (dropDirectory1 out) ++ "_stub" <.> "h"
-    putNormal $ "built: " ++ out
+      cmd "rm" "-f" $$ dropExtension (dropDirectory1 out) ++ "_stub" <.> "h"
+    putNormal $$ "built: " ++ out
