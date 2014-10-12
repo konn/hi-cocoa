@@ -7,16 +7,11 @@ $packageName - some description
 ## What is this?
 This is my great application.
 
-## Install
+## How to Build
 
 ```sh
-$$ cabal install $packageName
-```
-
-## Usage
-
-```sh
-$$ $packageName foo bar
+$$ git clone https://github.com/konn/$packageName.git && cd $packageName
+$$ runhaskell ./Builder.hs
 ```
 
 ## Licence
