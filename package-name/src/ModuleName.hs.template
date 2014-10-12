@@ -9,6 +9,7 @@ module $moduleName ( objc_initialise ) where
 import Constants
 import Messaging
 
+import           Data.Typeable (Typeable)
 import           Language.C.Inline.ObjC
 import           Language.C.Quote.ObjC
 
@@ -27,8 +28,8 @@ idMarshaller ''NSString
 data Session = Session { _self      :: $moduleName
                        } deriving (Typeable)
 
-nsLog :: MonadIO m => String -> m ()
-nsLog msg = liftIO $$(objc ['msg :> ''String] $$ void [cexp| NSLog(@"%@", msg) |])
+nsLog :: String -> IO ()
+nsLog msg = $$(objc ['msg :> ''String] $$ void [cexp| NSLog(@"%@", msg) |])
 
 newSession :: $moduleName -> IO Session
 newSession = Session
