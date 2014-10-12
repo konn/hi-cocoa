@@ -35,7 +35,7 @@ executable $packageName
   default-language:    Haskell2010
   ghc-options:         -optl-ObjC -threaded -fllvm -O2
   cc-options:          -fobjc-arc
-  frameworks:          Cocoa, AppKit, Foundations
+  frameworks:          Cocoa, AppKit, Foundation
   extensions:          DataKinds, DeriveDataTypeable, EmptyDataDecls,
                        FlexibleContexts, FlexibleInstances, GADTs,
                        MultiParamTypeClasses, OverloadedStrings, QuasiQuotes,
