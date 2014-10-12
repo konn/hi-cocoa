@@ -1,9 +1,13 @@
 *~
 *.hi
 *.o
+*_stub.h
+*_objc.h
 dist
 TAGS
 .DS_Store
 .cabal-sandbox
 cabal.sandbox.config
 \#.*\#
+_build
+_build.database

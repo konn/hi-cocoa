@@ -92,9 +92,9 @@ buildWith AppSetting {..} = do
       then copyFile' ("data/AppIcon.icns") (out </> "Contents" </> "Resources" </> "AppIcon.icns")
       else do
         putNormal "*** Because xcodebuild currently doesn't generate .icns file from xcassets, "
-        putNormal "*** in order to generate icon for, you have to build .xcodeproj"
-        putNormal "*** by Xcode and copy ${packageName}.app/Resources/AppIcon.icns"
-        putNormal "*** and copy to ./data/AppIcon.icns manually at first."
+        putNormal "*** in order to generate icon for, you have to build .xcodeproj by Xcode and"
+        putNormal "*** copy ${packageName}.app/Resources/AppIcon.icns" 
+        putNormal "**: to ./data/AppIcon.icns manually at first."
     putNormal "Application bundle successfully compiled."
 
   build </> app <.> "app" *> \out -> do
